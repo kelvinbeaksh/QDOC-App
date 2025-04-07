@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import { ValidationChain } from "express-validator/src/chain/validation-chain";
+import { ValidationChain } from "express-validator";
 
 export const nameRules = (fields: string[]): ValidationChain[] => {
   return fields.map((field) =>

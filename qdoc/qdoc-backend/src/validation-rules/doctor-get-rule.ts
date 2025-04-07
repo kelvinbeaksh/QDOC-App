@@ -1,4 +1,4 @@
-import { ValidationChain } from "express-validator/src/chain/validation-chain";
+import { ValidationChain } from "express-validator";
 import { check, query } from "express-validator";
 
 const DOCTOR_ID = "doctorId";

@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import { ValidationChain } from "express-validator/src/chain/validation-chain";
+import { ValidationChain } from "express-validator";
 import TicketTypes from "../ticket_types";
 
 const PATIENT_ID = "patientId";

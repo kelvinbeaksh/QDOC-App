@@ -1,5 +1,5 @@
 import { check, body } from "express-validator";
-import { ValidationChain } from "express-validator/src/chain/validation-chain";
+import { ValidationChain } from "express-validator";
 import TicketStatus from "../ticket_status";
 
 const TICKET_ID = "ticketId";

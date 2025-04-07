@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import { ValidationChain } from "express-validator/src/chain/validation-chain";
+import { ValidationChain } from "express-validator";
 const CLINIC_ID = "clinicId";
 const DOCTOR_ID = "doctorId";
 

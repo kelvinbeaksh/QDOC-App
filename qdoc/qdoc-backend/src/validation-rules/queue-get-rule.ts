@@ -1,4 +1,4 @@
-import { ValidationChain } from "express-validator/src/chain/validation-chain";
+import { ValidationChain } from "express-validator";
 import { query } from "express-validator";
 import QueueStatus from "../queue_status";
 

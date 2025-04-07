@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
-import { auth } from "firebase-admin/lib/auth";
-import DecodedIdToken = auth.DecodedIdToken;
+import { getAuth } from "firebase-admin/auth";
+import { DecodedIdToken } from "firebase-admin/auth";
 
 export enum Role {
   PATIENT = "PATIENT",
@@ -31,10 +31,9 @@ export class AuthClient {
     await this.firebaseAuthAdmin.setCustomUserClaims(authId, userClaims);
   }
 
-  public async verifyJwt(token: string): Promise<DecodedIdToken> {
-    return this.firebaseAuthAdmin.verifyIdToken(token);
+  public async verifyIdToken(idToken: string): Promise<DecodedIdToken> {
+    return getAuth().verifyIdToken(idToken);
   }
 }
 
 export const authClient = new AuthClient();
-
