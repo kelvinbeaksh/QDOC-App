@@ -1,0 +1,24 @@
+.chat-input-container {
+  padding: 1em 1.2em 1em
+}
+
+.chat-input-button {
+  padding: 0.56em;
+  min-width: auto;
+  &:disabled {
+    background: none;
+    & path {
+      fill: #d8d8d8
+    }
+  }
+}
+.chat-input-form {
+  display: flex;
+  margin-top: 0.4em;
+  padding: 0.48em 0.7em;
+  border: 2px solid transparent;
+}
+.chat-input-button-container {
+  margin: 1em 0 0 1em;
+  display: flex;
+}

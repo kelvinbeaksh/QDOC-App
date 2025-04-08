@@ -1,0 +1,17 @@
+@import '../variables';
+
+.sketch-picker {
+  margin-top: -$module-rem * 4;
+  position: absolute;
+  z-index: 999;
+}
+
+.picker-cover {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 998;
+}

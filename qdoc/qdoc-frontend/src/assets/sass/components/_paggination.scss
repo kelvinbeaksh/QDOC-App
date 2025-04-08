@@ -1,0 +1,92 @@
+@import '../variables';
+
+$_bg: #d4d3d3;
+$_color: #fff;
+$_bg-active: accent-palette(500);
+$_color-active: accent-contrast(500);
+$_bg-disabled: rgba($_bg, 0.6);
+$_color-disabled: $_color;
+$_module-rem: $module-rem;
+$_shape: 500px;
+$_animation: $animation;
+
+.ant-pagination {
+  .ant-pagination-prev,
+  .ant-pagination-next,
+  .ant-pagination-item {
+    background: transparent;
+    border-radius: $_shape;
+    border: none;
+    cursor: pointer;
+    min-width: $_module-rem * 3;
+    min-height: $_module-rem * 3;
+    height: $_module-rem * 3;
+    text-align: center;
+    width: $_module-rem * 3;
+
+    .ant-pagination-item-link-icon {
+      color: $_color-active;
+    }
+
+    &.ant-pagination-item-active {
+      a,
+      .ant-pagination-item-link {
+        background: $_bg-active;
+        color: $_color-active;
+      }
+    }
+
+    &:not(.ant-pagination-jump-prev),
+    &:not(.ant-pagination-jump-next) {
+      .ant-pagination-item-link {
+        background: $_bg;
+
+        &:hover {
+          background: $_bg-active;
+        }
+      }
+    }
+
+    .ant-pagination-item-link,
+    a {
+      align-items: center;
+      border-radius: $_shape;
+      background: $_bg;
+      border: none;
+      color: $_color;
+      display: flex;
+      font-weight: 500;
+      justify-content: center;
+      transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+
+      &:hover {
+        color: $_color-active;
+
+        &:not(.ant-pagination-jump-prev),
+        &:not(.ant-pagination-jump-next) {
+          background: $_bg-active;
+        }
+      }
+    }
+    &.ant-pagination-disabled {
+      opacity: .7;
+      pointer-events: none;
+    }
+  }
+
+  .ant-pagination-prev,
+  .ant-pagination-next {
+    width: unset;
+    a {
+      padding: 0 ($module-rem  * .75);
+    }
+  }
+}
+
+.ant-pagination-jump-next {
+  .ant-pagination-item-container {
+    .ant-pagination-item-link-icon {
+      color: $_bg-active;
+    }
+  }
+}

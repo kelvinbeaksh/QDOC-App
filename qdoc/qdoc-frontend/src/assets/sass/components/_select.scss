@@ -1,0 +1,85 @@
+@import "../variables";
+@import "input";
+
+.ant-select-single:not(.ant-select-customize-input),
+.ant-select-multiple,
+.ant-select {
+  width: 100%;
+
+  &.has-error .ant-select-selector {
+    border-color: $error-color;
+  }
+
+  &.ant-select-sm .ant-select-selector {
+    @include input-sm();
+  }
+
+  &.ant-select-lg .ant-select-selector {
+    @include input-lg();
+  }
+
+  .ant-select-selector {
+    @include input();
+
+    padding: 0 !important;
+
+    .ant-select-selection-placeholder {
+      position: absolute;
+      transform: translateY(-50%);
+      top: 50%;
+    }
+
+    .ant-select-selection-search {
+      left: calc(#{$module-rem * 2} - 2px);
+
+      .ant-select-selection-placeholder,
+      > input {
+        margin-left: -2px !important;
+      }
+    }
+
+    .ant-select-selection-placeholder,
+    .ant-select-selection-item {
+      right: $module-rem * 2;
+      left: $module-rem * 2;
+    }
+
+    .ant-select-selection-search-input {
+      padding: 0 2px !important;
+    }
+  }
+
+  &.ant-select-focused {
+    .ant-select-selector {
+      @include input-focused();
+    }
+  }
+}
+
+.ant-select-multiple .ant-select-selection-item {
+  background: rgba(#000, 0.1);
+}
+
+.ant-select {
+  .ant-select-clear {
+    background-color: #ebebeb !important;
+    color: rgba(#000, 0.35);
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  &-open {
+    .ant-select-clear {
+      background-color: #fff !important;
+      color: rgba(#000, 0.35);
+    }
+  }
+}
+
+.ant-select-single.ant-select-show-arrow .ant-select-selection-search {
+  left: $module-rem * 2;
+  right: $module-rem * 2.5;
+}
+
+.ant-select-item {
+  padding: ($module-rem / 2) ($module-rem * 2);
+}

@@ -1,0 +1,265 @@
+@import "../variables";
+
+$_types: (
+  default: (
+    bg: main-palette(500),
+    color: main-contrast(500),
+    hover-bg: main-palette(700),
+    hover-color: main-contrast(500)
+  ),
+  primary: (
+    bg: accent-palette(500),
+    color: accent-contrast(500),
+    hover-bg: accent-palette(700),
+    hover-color: accent-contrast(700)
+  ),
+  dashed: (
+    bg: transparent,
+    color: main-palette(500),
+    hover-bg: main-palette(500),
+    hover-color: #fff
+  ),
+  link: (
+    bg: transparent,
+    color: accent-palette(300),
+    hover-bg: transparent,
+    hover-color: accent-palette(500)
+  ),
+  warning: (
+    bg: $warning-color,
+    color: $warning-contrast,
+    hover-bg: darken($warning-color, 10%),
+    hover-color: darken($warning-contrast, 10%)
+  ),
+  dangerous: (
+    bg: $error-color,
+    color: $error-contrast,
+    hover-bg: darken($error-color, 10%),
+    hover-color: darken($error-contrast, 10%)
+  )
+);
+
+@-webkit-keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+$_module-rem: $module-rem;
+$_border-width: 1px;
+$_border-style: solid;
+$_fs: 1rem;
+$_ff: $main-ff;
+$_fw: 700;
+$_lh: $_module-rem * 2 / $_fs;
+$_tt: none;
+$_padding: $_module-rem ($_module-rem * 1.5);
+$_shape: $shape;
+$_transition: $animation;
+$_shadow: $shadow;
+$_shadow-hover: $shadow-hover;
+
+$_lg-padding: ($_module-rem * 1.5) ($_module-rem * 2.5);
+$_lg-fs: ($_fs * 1.2);
+$_lg-lh: $_module-rem * 2 / $_lg-fs;
+
+$_sm-padding: ($_module-rem) ($_module-rem / 2);
+$_sm-fs: ($_fs * 0.8);
+$_sm-lh: $_module-rem / $_sm-fs;
+
+.ant-btn[class*="bg"] {
+  border: none !important;
+  position: relative;
+
+  > span {
+    z-index: 2;
+  }
+
+  &:after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    opacity: 0;
+    background: #000;
+    border-radius: $shape;
+    transition: opacity 0.2s ease-in-out;
+
+    z-index: -1;
+  }
+
+  &:hover:after {
+    opacity: 0.1;
+  }
+}
+
+.ant-btn {
+  align-items: center;
+  background: main-palette(500);
+  border-radius: $_shape;
+  border-color: main-palette(500);
+  box-shadow: $_shadow;
+  color: main-contrast(500);
+  display: inline-flex;
+  cursor: pointer;
+  justify-content: center;
+  font-family: $_ff;
+  font-size: $_fs;
+  font-weight: $_fw;
+  line-height: $main-lh;
+  height: 40px;
+  padding: $_padding;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background 0.2s $_transition, border 0.2s $_transition, box-shadow 0.2s $_transition,
+    color 0.2s $_transition, opacity 0.2s $_transition;
+  user-select: none;
+  white-space: nowrap;
+  will-change: background, border, box-shadow, color, opacity;
+  -webkit-appearance: none;
+
+  &:focus,
+  &:hover {
+    background: main-palette(500);
+    border-color: main-palette(500);
+    color: main-contrast(500);
+  }
+
+  @each $_type, $_color in $_types {
+    &.ant-btn-#{$_type} {
+      background: map-get($_color, bg);
+      border-color: map-get($_color, bg);
+      color: map-get($_color, color);
+
+      &:focus,
+      &:hover {
+        background: map-get($_color, hover-bg);
+        border-color: map-get($_color, hover-bg);
+        color: map-get($_color, hover-color);
+      }
+      &.ant-btn-background-ghost:not(.ant-btn-link):not(.ant-btn-dashed) {
+        background: transparent;
+        box-shadow: none;
+        color: map-get($_color, bg);
+
+        &:hover,
+        .active & {
+          background: map-get($_color, bg) !important;
+          color: map-get($_color, color) !important;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    background: main-palette(700);
+    color: main-contrast(500);
+  }
+
+  &.ant-btn-dashed {
+    border: 1px dashed map_get(map-get($_types, dashed), color);
+
+    &.ant-btn-background-ghost {
+      background: transparent;
+      box-shadow: none;
+      border: 1px dashed map_get(map-get($_types, dashed), color);
+      color: map_get(map-get($_types, dashed), color);
+
+      &:hover {
+        background: map_get(map-get($_types, dashed), color) !important;
+        color: #fff !important;
+      }
+    }
+  }
+
+  span {
+    margin: 0 ($module-rem / 2);
+    line-height: #{$_fs * $_lh};
+    letter-spacing: 0.2px;
+
+    &:empty {
+      margin: 0;
+    }
+  }
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.8;
+    color: #dfdfdf;
+  }
+  &:hover {
+    border-color: transparent;
+    box-shadow: $_shadow-hover;
+  }
+  &.ant-btn-danger {
+    border: none;
+  }
+  &.ant-btn-link {
+    background: none !important;
+    box-shadow: none !important;
+
+    &:hover {
+      background: none;
+    }
+    &:focus {
+      background: none;
+    }
+  }
+  &.ant-btn-lg {
+    height: 50px;
+    font-size: $_lg-fs;
+    padding: $_lg-padding;
+    line-height: $_lg-lh;
+
+    span {
+      line-height: #{$_lg-fs * $_lg-lh};
+    }
+  }
+  &.ant-btn-sm {
+    font-size: $_sm-fs;
+    padding: $_sm-padding;
+    line-height: $_sm-lh;
+    height: 30px;
+    span {
+      line-height: #{$_sm-fs * $_sm-lh};
+    }
+  }
+
+  &.ant-btn-circle {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    padding: 0 !important;
+  }
+  &.ant-btn-background-ghost {
+    border: 1px solid currentColor;
+
+    &:hover {
+      &:not(.ant-btn-danger) {
+        color: lighten(#2fa7ff, 10);
+      }
+    }
+  }
+}
+
+.ant-btn-group {
+  > .ant-btn:first-child:not(:last-child) {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  > .ant-btn:last-child:not(:first-child) {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+}

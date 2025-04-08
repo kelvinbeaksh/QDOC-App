@@ -1,0 +1,36 @@
+@import '../variables';
+
+.ant-modal {
+  .ant-modal-header,
+  .ant-modal-footer {
+    border: none;
+  }
+
+  .ant-modal-header {
+    padding: ($module-rem * 2) ($module-rem * 2) 0;
+
+    .title {
+      margin: $module-rem / 2;
+      line-height: 1;
+    }
+  }
+
+  .ant-modal-body {
+    padding: ($module-rem * 2);
+  }
+
+  .ant-modal-footer {
+    padding: $module-rem * 2;
+  }
+
+  .modal-footer {
+    border-radius: 0 0 $shape $shape;
+    margin: -$module-rem * 2;
+    padding: $module-rem * 2;
+    background-color: rgba(#000, 0.05);
+  }
+}
+
+.ant-modal-mask {
+  background-color: rgba(#000, 0.15);
+}

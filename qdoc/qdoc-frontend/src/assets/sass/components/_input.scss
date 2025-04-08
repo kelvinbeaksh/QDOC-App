@@ -1,0 +1,289 @@
+@import "../variables";
+
+$_bg: (
+  default: #ebebeb,
+  hover: #ebebeb,
+  focus: #fff,
+  disabled: rgba(#ccc, 0.1)
+);
+$_border: (
+  default: #ebebeb,
+  hover: #ebebeb,
+  focus: accent-palette(500),
+  disabled: rgba(#ccc, 0.5)
+);
+$_color: (
+  default: main-palette(500),
+  hover: main-palette(500),
+  focus: main-palette(500),
+  disabled: #bdbdbd
+);
+
+$_module-rem: $module-rem;
+$_placeholder-color: #a8a8a8;
+$_border-style: solid;
+$_border-width: 1px;
+$_fs: 1rem;
+$_lh: $_module-rem * 2 / $_fs;
+$_padding-h: $_module-rem * 2;
+$_padding-v: $_module-rem;
+$_shape: 20px;
+$_animation: $animation;
+$_shadow-hover: $shadow-hover;
+
+$_area-padding-h: $_module-rem * 2;
+$_area-padding-v: $_module-rem;
+
+// size sm
+$_fs-sm: ($_fs * 0.9);
+$_lh-sm: $_module-rem * 2 / $_fs-sm;
+$_shape-sm: ($_shape * 0.8);
+$_padding-v-sm: ($_module-rem / 2);
+
+// size lg
+$_fs-lg: ($_fs * 1.3);
+$_lh-lg: $_module-rem * 2 / $_fs-lg;
+$_shape-lg: ($_shape * 1.5);
+$_padding-v-lg: $_module-rem * 1.5;
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content;
+  }
+  :-moz-placeholder {
+    @content;
+  }
+  ::-moz-placeholder {
+    @content;
+  }
+  :-ms-input-placeholder {
+    @content;
+  }
+}
+
+@mixin input-height {
+  &:not(textarea) {
+    height: (4 * $module);
+  }
+}
+
+@mixin input-sm {
+  border-radius: $_shape * 0.8 !important;
+  font-size: $_fs-sm !important;
+  height: (3 * $module) !important;
+  line-height: $_lh-sm !important;
+
+  .ant-select-selector {
+    height: auto;
+  }
+}
+
+@mixin input-lg {
+  border-radius: $_shape * 1.5 !important;
+  font-size: $_fs-lg !important;
+  height: (5 * $module) !important;
+  line-height: $_lh-lg !important;
+
+  .ant-select-selector {
+    height: auto;
+  }
+}
+
+@mixin input-padding {
+  padding: 0 $_padding-h !important;
+  padding: 0 calc(#{$_padding-h} - 0.2em) !important;
+}
+
+@mixin textarea-padding {
+  padding: $module-rem $_padding-h !important;
+  padding: $module-rem calc(#{$_padding-h} - 0.2em) !important;
+}
+
+@mixin default-input {
+  background: transparent !important;
+  border: none;
+
+  &:hover {
+    background: transparent !important;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+@mixin input-focused {
+  background-color: map_get($_bg, focus) !important;
+  border-color: accent-palette(500) !important;
+  box-shadow: none;
+  color: map_get($_color, focus);
+}
+
+@mixin input {
+  background-color: map_get($_bg, default);
+  box-shadow: none;
+  border: map_get($_border, default) $_border-width solid;
+  border-radius: $_shape;
+  display: flex;
+  flex: 1;
+  color: map_get($_color, default);
+  line-height: $_lh;
+  transition: background 0.2s $_animation, border 0.2s $_animation, box-shadow 0.2s $_animation,
+    color 0.2s $_animation;
+  will-change: background, border, box-shadow, color;
+  width: 100%;
+
+  @include input-height;
+
+  @include placeholder {
+    color: $_placeholder-color !important;
+    opacity: 1 !important;
+  }
+
+  .ant-select-selection-placeholder {
+    color: $_placeholder-color !important;
+    opacity: 1 !important;
+  }
+
+  > *,
+  .ant-input-suffix,
+  .ant-input-prefix {
+    align-items: center;
+    display: flex;
+  }
+
+  .ant-input-suffix {
+    padding-left: $_padding-h;
+  }
+
+  > div,
+  input,
+  .ant-input-affix-wrapper {
+    background: transparent !important;
+    border-radius: $_shape !important;
+    height: 100%;
+  }
+
+  &.has-error {
+    border-color: $error-color;
+  }
+
+  &:hover:not(.ant-input-disabled) {
+    cursor: text;
+    border-color: map_get($_border, hover);
+    box-shadow: $_shadow-hover;
+  }
+
+  &:focus:not(.ant-input-disabled) {
+    // @include input-focused;
+  }
+
+  &.ant-input-sm {
+    height: auto;
+    @include input-sm();
+  }
+
+  &.ant-input-lg {
+    height: auto;
+    @include input-lg();
+  }
+}
+
+.readonly,
+.ant-input-affix-wrapper-readonly {
+  background-color: hsla(0, 0%, 80%, 0.1) !important;
+  border-color: hsla(0, 0%, 80%, 0.5) !important;
+  box-shadow: none !important;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+@mixin input-box {
+  .ant-input-affix-wrapper {
+    @include input();
+    @include input-padding();
+
+    &.ant-input-affix-wrapper-textarea-with-clear-btn {
+      height: unset !important;
+    }
+
+    .ant-input-prefix {
+      margin-right: -($module-rem * 3);
+    }
+  }
+
+  .ant-input-affix-wrapper-focused {
+    @include input-focused();
+  }
+
+  > textarea.ant-input {
+    @include textarea-padding;
+    height: unset;
+  }
+}
+
+html {
+  @include input-box;
+
+  .ant-input {
+    @include input();
+
+    &:not(textarea) {
+      @include input-padding();
+    }
+
+    .ant-input-prefix {
+      margin-right: -($module-rem * 3);
+    }
+
+    &:focus {
+      @include input-focused();
+    }
+  }
+
+  .ant-input-affix-wrapper {
+    @include input-box;
+
+    input.ant-input {
+      @include default-input;
+    }
+  }
+
+  .ant-select-selector,
+  .ant-input-affix-wrapper-textarea-with-clear-btn {
+    padding: 0 !important;
+    height: unset;
+  }
+
+  .ant-form-item-control-input {
+    .ant-form-item-control-input-content {
+      @include input-box;
+    }
+  }
+
+  textarea.ant-input {
+    @include textarea-padding;
+  }
+
+  .ant-cascader-picker-clear {
+    border-radius: 50%;
+  }
+
+  .ant-form-item-label {
+    font-weight: 600;
+  }
+
+  .ant-input-affix-wrapper .ant-input:not(:first-child) {
+    padding-left: $module-rem * 4 !important;
+  }
+
+  .ant-input-affix-wrapper .ant-input:not(textarea):first-child {
+    padding-left: 2px !important;
+  }
+
+  .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+    border-color: map-get($_border, default);
+  }
+
+  .ant-input-affix-wrapper .ant-input:not(:last-child) {
+    padding-right: $module-rem * 4 !important;
+  }
+}

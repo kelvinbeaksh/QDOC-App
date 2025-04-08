@@ -1,0 +1,15 @@
+@import '../_variables';
+
+$_color: (
+  default: #c1c1c1,
+  hover: #ffeb3d,
+  active: #faa110
+);
+
+.ant-rate {
+  color: map-get($_color, active);
+
+  &.ant-rate-disabled .ant-rate-star {
+    pointer-events: none;
+  }
+}

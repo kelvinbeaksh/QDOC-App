@@ -1,0 +1,96 @@
+@import '../../assets/sass/variables';
+
+.layout {
+  display: block;
+  height: 100%;
+
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .main-content {
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      margin-bottom: $footer-height;
+      position: relative;
+      transition: 0.2s padding 0s $animation;
+      -webkit-overflow-scrolling: touch;
+
+      .page-loader {
+        align-items: center;
+        background: #fff;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        position: absolute;
+        width: 100%;
+        z-index: 10;
+      }
+
+      &.fulfilled .app-loader {
+        display: none;
+      }
+
+      .main-content-wrap {
+        min-height: calc(100% - #{$module-rem * 4});
+        margin: 0 auto;
+        opacity: 0;
+        padding: ($module-rem * 3) ($module-rem * 2) ($module-rem * 4);
+        transition: 0.2s opacity 0s $animation;
+
+        .page-header {
+          display: flex;
+          justify-content: space-between;
+
+          .page-title {
+            color: rgba(main-palette(500), 0.5);
+            margin: 0 0 ($module-rem * 2);
+            font-size: 2rem;
+            width: 100%;
+          }
+
+          .page-breadcrumbs {
+            color: rgba(main-palette(500), 0.5);
+            font-size: 0.8rem;
+            line-height: 2;
+            margin: 0 0 ($module-rem * 2);
+          }
+        }
+      }
+      &.loaded {
+        .main-content-wrap {
+          opacity: 1;
+          transition: 0s opacity 0s $animation;
+        }
+      }
+    }
+    .content-overlay {
+      background: rgba(main-palette(500), 0.1);
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      visibility: hidden;
+      width: 100%;
+      z-index: 990;
+
+      &.show {
+        @media #{$max991} {
+          visibility: visible;
+        }
+      }
+    }
+    //Boxed
+    &.boxed {
+      .main-content {
+        .main-content-wrap {
+          position: relative;
+          max-width: $boxed-width;
+          max-width: var(--boxed-width);
+        }
+      }
+    }
+  }
+}
