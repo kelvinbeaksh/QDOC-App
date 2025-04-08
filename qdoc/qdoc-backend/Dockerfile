@@ -1,20 +1,24 @@
-FROM node:15.12.0
-
-USER root
-
-ENV NODE_ENV=build
+FROM node:20.15.1
 
 WORKDIR /qdoc
 
+# Copy package files
 COPY package*.json tsconfig*.json ./
 
-RUN npm install
+# Install dependencies
+RUN npm ci
 
-RUN npm install --only=dev
-
+# Copy source code
 COPY . .
 
-EXPOSE 8080
+# Build TypeScript code
+RUN npm run build
+
+# Remove dev dependencies
+RUN npm ci --only=production
+
+# Expose the port your app runs on
+EXPOSE 8010
 
 ENV NODE_ENV=production
 
