@@ -2,16 +2,16 @@ import * as admin from "firebase-admin";
 import { getAuth } from "firebase-admin/auth";
 import { DecodedIdToken } from "firebase-admin/auth";
 
-export enum Role {
+export enum UserRoles {
   PATIENT = "PATIENT",
   DOCTOR = "DOCTOR",
   CLINIC_STAFF = "CLINIC_STAFF",
-  ADMIN = "ADMIN",
+  ADMIN = "ADMIN"
 }
 
 export interface UserPermissions {
   authId: string
-  role: Role
+  role: UserRoles
   clinicId?: number
   doctorId?: number
   patientId?: number
@@ -23,7 +23,19 @@ export class AuthClient {
   private firebaseAuthAdmin: admin.auth.Auth;
 
   constructor() {
-    this.firebaseAuthAdmin = admin.initializeApp({}).auth();
+    if (!admin.apps.length) {
+      const config = JSON.parse(process.env.FIREBASE_CONFIG || '{}');
+      this.firebaseAuthAdmin = admin.initializeApp({
+        projectId: config.projectId,
+        credential: admin.credential.applicationDefault()
+      }).auth();
+      
+      if (process.env.NODE_ENV === 'local') {
+        process.env.FIREBASE_AUTH_EMULATOR_HOST = 'localhost:9098';
+      }
+    } else {
+      this.firebaseAuthAdmin = admin.app().auth();
+    }
   }
 
   public async setPermissions(userPermissions: UserPermissions): Promise<void> {

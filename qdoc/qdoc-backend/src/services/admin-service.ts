@@ -1,7 +1,7 @@
 import AdminRepository, { AdminAttributes } from "../respository/admin-repository";
 import { mapRepositoryErrors } from "./helpers/handle-repository-errors";
 import AuthService from "./auth-service";
-import { Role } from "../clients/auth-client";
+import { UserRoles } from "../clients/auth-client";
 import { Logger } from "../logger";
 import TechnicalError from "../errors/technical-error";
 import Admin from "../models/admin";
@@ -25,7 +25,7 @@ class AdminService {
     try {
       await AuthService.setPermissions(
         { authId: admin.authId,
-          role: Role.ADMIN,
+          role: UserRoles.ADMIN,
           adminId: admin.id },
       );
     } catch (e) {

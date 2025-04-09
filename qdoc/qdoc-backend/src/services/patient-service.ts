@@ -4,7 +4,7 @@ import { mapRepositoryErrors } from "./helpers/handle-repository-errors";
 import { Logger } from "../logger";
 import TechnicalError from "../errors/technical-error";
 import AuthService from "./auth-service";
-import { Role } from "../clients/auth-client";
+import { UserRoles } from "../clients/auth-client";
 import NotFoundError from "../errors/not-found-error";
 import { Errors } from "../errors/error-mappings";
 
@@ -34,7 +34,7 @@ class PatientService {
   private static async setPermissions(patient: Patient): Promise<void> {
     try {
       await AuthService.setPermissions(
-        { authId: patient.authId, role: Role.PATIENT, patientId: patient.id },
+        { authId: patient.authId, role: UserRoles.PATIENT, patientId: patient.id },
       );
     } catch (e) {
       await this.deleteAppendErrorMessagePrefix(patient,

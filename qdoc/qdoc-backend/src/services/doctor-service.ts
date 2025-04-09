@@ -2,7 +2,7 @@ import Doctor, { DoctorAttributes, DoctorAttributesWithId } from "../models/doct
 import DoctorRepository, { FindAllDoctorAttributes } from "../respository/doctor-repository";
 import { mapRepositoryErrors } from "./helpers/handle-repository-errors";
 import AuthService from "./auth-service";
-import { Role, UserPermissions } from "../clients/auth-client";
+import { UserRoles, UserPermissions } from "../clients/auth-client";
 import { Logger } from "../logger";
 import TechnicalError from "../errors/technical-error";
 import NotFoundError from "../errors/not-found-error";
@@ -65,7 +65,7 @@ class DoctorService {
   private static generateUserPermission(doctor: Doctor): UserPermissions {
     const permissions = {
       authId: doctor.authId,
-      role: Role.DOCTOR,
+      role: UserRoles.DOCTOR,
       doctorId: doctor.id,
     };
     return doctor.clinicId ? { clinicId: doctor.clinicId, ...permissions } : permissions;

@@ -1,7 +1,7 @@
 {
   "emulators": {
     "auth": {
-      "port": 9099,
+      "port": 9098,
       "host": "0.0.0.0"
     },
     "ui": {

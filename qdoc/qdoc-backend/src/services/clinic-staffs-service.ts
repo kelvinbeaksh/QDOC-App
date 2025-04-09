@@ -2,7 +2,7 @@ import ClinicStaff from "../models/clinic-staff";
 import ClinicStaffRepository, { ClinicStaffAttributes } from "../respository/clinic-staff-repository";
 import { mapRepositoryErrors } from "./helpers/handle-repository-errors";
 import AuthService from "./auth-service";
-import { Role } from "../clients/auth-client";
+import { UserRoles } from "../clients/auth-client";
 import { Logger } from "../logger";
 import TechnicalError from "../errors/technical-error";
 
@@ -16,7 +16,7 @@ class ClinicStaffsService {
   private static async setPermissions(clinicStaff: ClinicStaff):Promise<void> {
     try {
       await AuthService.setPermissions({ authId: clinicStaff.authId,
-        role: Role.CLINIC_STAFF,
+        role: UserRoles.CLINIC_STAFF,
         clinicStaffId: clinicStaff.id,
         clinicId: clinicStaff.clinicId });
     } catch (e) {
