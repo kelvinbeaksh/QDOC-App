@@ -10,10 +10,12 @@ import { ticketRoute } from "./routes/ticket-route";
 import { adminRoute } from "./routes/admin-route";
 import { mobileRoute } from "./routes/mobile-route";
 import { videoRoute } from "./routes/video-route";
+import zoomTestRoute from "./routes/zoom-test-route";
 
 const app: express.Application = express();
 
 app.use(cors());
+app.use(express.json());
 
 const apiV1Router = Router();
 
@@ -27,6 +29,7 @@ apiV1Router.use("/tickets", ticketRoute);
 apiV1Router.use("/admins", adminRoute);
 apiV1Router.use("/mobile", mobileRoute);
 apiV1Router.use("/video", videoRoute);
+apiV1Router.use("/zoom", zoomTestRoute);
 
 app.use(errorHandler);
 

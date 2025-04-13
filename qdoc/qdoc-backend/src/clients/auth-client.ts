@@ -25,10 +25,15 @@ export class AuthClient {
   constructor() {
     if (!admin.apps.length) {
       const config = JSON.parse(process.env.FIREBASE_CONFIG || '{}');
-      this.firebaseAuthAdmin = admin.initializeApp({
+      const appConfig: admin.AppOptions = {
         projectId: config.projectId,
         credential: admin.credential.applicationDefault()
-      }).auth();
+      };
+
+      this.firebaseAuthAdmin = admin.initializeApp(appConfig).auth();
+      
+      // Only connect to emulator if explicitly set in environment
+      console.log('Using production Firebase Auth');
       
       if (process.env.NODE_ENV === 'local') {
         process.env.FIREBASE_AUTH_EMULATOR_HOST = 'localhost:9098';
