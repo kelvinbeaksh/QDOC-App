@@ -1,4 +1,5 @@
 import * as admin from "firebase-admin";
+import { getAuth } from "firebase-admin/auth";
 import { DecodedIdToken } from "firebase-admin/auth";
 
 export enum UserRoles {
@@ -23,32 +24,22 @@ export class AuthClient {
 
   constructor() {
     if (!admin.apps.length) {
-      try {
-        // Initialize Firebase Admin SDK
-        admin.initializeApp({
-          projectId: 'local-project'
-        });
-        this.firebaseAuthAdmin = admin.auth();
-        console.log('Firebase Admin SDK initialized successfully');
+      const config = JSON.parse(process.env.FIREBASE_CONFIG || '{}');
+      const appConfig: admin.AppOptions = {
+        projectId: config.projectId,
+        credential: admin.credential.applicationDefault()
+      };
 
-        // Connect to emulator
+      this.firebaseAuthAdmin = admin.initializeApp(appConfig).auth();
+      
+      // Only connect to emulator if explicitly set in environment
+      console.log('Using production Firebase Auth');
+      
+      if (process.env.NODE_ENV === 'local') {
         process.env.FIREBASE_AUTH_EMULATOR_HOST = 'localhost:9098';
-        console.log('Connecting to Firebase Auth Emulator on localhost:9098');
-
-        // Initialize emulator
-        admin.auth().useEmulator('http://localhost:9098');
-      } catch (error) {
-        console.error('Failed to initialize Firebase Admin SDK:', error);
-        throw new Error('Failed to initialize Firebase Admin SDK');
       }
     } else {
-      try {
-        this.firebaseAuthAdmin = admin.auth();
-        console.log('Using existing Firebase Admin SDK instance');
-      } catch (error) {
-        console.error('Failed to get existing Firebase Admin SDK instance:', error);
-        throw new Error('Failed to get existing Firebase Admin SDK instance');
-      }
+      this.firebaseAuthAdmin = admin.app().auth();
     }
   }
 

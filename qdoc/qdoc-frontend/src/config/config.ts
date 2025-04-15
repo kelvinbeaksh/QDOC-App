@@ -22,11 +22,7 @@ class Config {
   }
 
   public static get firebaseEmulatorUrl(): string {
-    return get(window, "__ENV.REACT_APP_FIREBASE_EMULATOR_URL", "");
-  }
-
-  public static get isUsingFirebaseEmulator(): boolean {
-    return this.nodeEnvironment === "local" && !!this.firebaseEmulatorUrl;
+    return get(window, "__ENV.REACT_APP_FIREBASE_EMULATOR_URL", "http://localhost:9099");
   }
 
   public static get nodeEnvironment(): string {

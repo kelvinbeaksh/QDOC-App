@@ -32,7 +32,7 @@ export class AuthClient {
   constructor(firebaseConfig: FirebaseConfig) {
     firebase.initializeApp(firebaseConfig);
     const authInstance = firebase.auth();
-    if (Config.isUsingFirebaseEmulator) {
+    if (Config.nodeEnvironment === "local") {
       authInstance.useEmulator(Config.firebaseEmulatorUrl);
     }
     this.firebaseAuthInstance = authInstance;
