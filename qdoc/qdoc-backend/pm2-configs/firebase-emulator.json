@@ -1,0 +1,15 @@
+{
+  "apps": [
+    {
+      "name": "firebase-emulator",
+      "script": "npx",
+      "args": "firebase emulators:start --only auth",
+      "watch": false,
+      "autorestart": true,
+      "max_memory_restart": "1G",
+      "env": {
+        "FIREBASE_AUTH_EMULATOR_HOST": "localhost:9098"
+      }
+    }
+  ]
+}
