@@ -1,19 +1,169 @@
-## QDOC web portal
+# QDOC Frontend
 
 [![Staging CI](https://github.com/qdoctech/qdoc-portal/actions/workflows/staging-ci.yml/badge.svg?branch=main)](https://github.com/qdoctech/qdoc-portal/actions/workflows/staging-ci.yml)
 
-In the project directory, there are two folders:
+## Overview
 
-1. src
-2. external
+QDOC is a modern healthcare management system that provides queue management, appointment scheduling, and telemedicine capabilities for clinics and healthcare providers. This repository contains the frontend application built with React and TypeScript.
 
-### `src`
+## Project Structure
 
-The main QDOC project
+```
+qdoc-frontend/
+├── src/
+│   ├── assets/              # Static assets (images, fonts, etc.)
+│   ├── components/          # Reusable React components
+│   ├── config/             # Application configuration
+│   ├── contexts/           # React context providers
+│   ├── hooks/              # Custom React hooks
+│   ├── layout/             # Layout components and templates
+│   ├── pages/              # Page components
+│   ├── routes/             # Route definitions
+│   ├── services/           # API services and utilities
+│   ├── store/              # Redux store configuration
+│   ├── styles/             # Global styles and theme
+│   └── types/              # TypeScript type definitions
+└── public/                # Public assets and index.html
+```
 
-### `external`
+## Key Features
 
-Reference to the react UI theme (purchased)
+### User Management
+- Multiple user roles: ADMIN, DOCTOR, CLINIC_STAFF, PATIENT
+- Role-based access control
+- Secure authentication with Firebase
+
+### Clinic Management
+- Clinic registration and management
+- Queue management system
+- Appointment scheduling
+- Patient management
+
+### Queue Management
+- Real-time queue monitoring
+- Ticket creation and management
+- Queue status tracking
+- Patient queue status updates
+
+### Telemedicine
+- Video consultation capabilities
+- Secure video conferencing
+- Appointment scheduling for telemedicine
+- Patient-doctor communication
+
+## User Flow
+
+1. **Authentication**
+   - Users sign in using their email and password
+   - Role-based redirection after login
+   - Remember me functionality
+
+2. **Clinic Staff Flow**
+   - View and manage clinic queues
+   - Manage patient appointments
+   - Create and manage tickets
+   - Monitor queue status
+
+3. **Doctor Flow**
+   - View and manage patient appointments
+   - Conduct video consultations
+   - Access patient information
+   - Manage clinic queue
+
+4. **Patient Flow**
+   - View available clinics
+   - Join clinic queues
+   - Schedule appointments
+   - Access telemedicine services
+
+## Development Setup
+
+### Prerequisites
+- Node.js v15.12.0 or higher
+- Docker and Docker Compose
+- Firebase CLI
+- direnv (optional)
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment:
+   ```bash
+   cp .envrc.template .envrc
+   direnv allow
+   ```
+
+4. Install Husky for git hooks:
+   ```bash
+   npx husky install
+   ```
+
+5. Start development server:
+   ```bash
+   npm start
+   ```
+
+### Firebase Setup
+
+1. Install Firebase CLI:
+   ```bash
+   curl -sL https://firebase.tools | bash
+   ```
+
+2. Login to Firebase:
+   ```bash
+   firebase login
+   ```
+
+3. Start Firebase emulator:
+   ```bash
+   firebase emulators:start --only auth
+   ```
+
+## Testing
+
+Run tests using:
+```bash
+npm test
+```
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+The build artifacts will be stored in the `build/` directory.
+
+## Docker Setup
+
+```bash
+docker-compose up --build -d
+```
+
+## Environment Variables
+
+Copy `.envrc.template` to `.envrc` and update with your configuration:
+```bash
+cp .envrc.template .envrc
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
+
+## License
+
+[Your License Information Here]
 
 ## Run the QDOC app
 
