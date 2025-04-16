@@ -139,7 +139,7 @@
       }
     }
 
-    @media #{$max767} {
+    @media (max-width: 767px) {
       .fc-left,
       .fc-right,
       .fc-center {

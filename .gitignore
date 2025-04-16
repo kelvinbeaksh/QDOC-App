@@ -14,3 +14,4 @@ terraform/creds/keys.json
 public/virtualbackground
 .env
 mock_server
+.qodo
