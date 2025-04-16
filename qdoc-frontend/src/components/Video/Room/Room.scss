@@ -1,0 +1,7 @@
+.room-container {
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: calc(100% - 220px) 220px;
+}

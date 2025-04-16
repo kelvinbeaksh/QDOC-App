@@ -1,0 +1,16 @@
+node_modules
+mock_server
+jest_report
+external
+terraform
+__mocks__
+.husky
+.cache
+.config
+firebase
+build
+test-report.html
+.gitignore
+.envrc.template
+.envrc
+public/env

@@ -1,0 +1,56 @@
+@import '../variables';
+
+.ant-dropdown {
+  @media only screen and (max-width: 576px) {
+    left: ($module-rem * 2) !important;
+    right: ($module-rem * 2) !important;
+  }
+}
+
+.ant-dropdown-menu {
+  box-shadow: $shadow-hover;
+  margin-top: $module-rem;
+  padding: $module-rem 0;
+
+  @media only screen and (max-width: 576px) {
+    margin-top: $module-rem * 2;
+  }
+
+  .ant-dropdown-menu-item {
+    padding: $module-rem ($module-rem * 2) ;
+
+    .link, a {
+      cursor: pointer;
+      color: $main-color;
+      transition: color .2s $animation;
+
+      &:hover {
+        background: transparent;
+        color: main-palette(500);
+      }
+    }
+  }
+  .ant-dropdown-menu-item-active {
+    background: none !important;
+    color: $main-color;
+
+    a {
+      color: inherit;
+    }
+  }
+}
+.ant-dropdown-trigger {
+  &.icon {
+    opacity: .5;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+.ant-dropdown-open {
+  &.icon {
+    color: accent-palette(500);
+    opacity: 1;
+  }
+}

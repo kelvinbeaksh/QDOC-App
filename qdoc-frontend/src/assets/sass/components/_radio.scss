@@ -1,0 +1,85 @@
+@import '../variables';
+
+$_bg: (
+  default: #ebebeb,
+  hover: #ebebeb,
+  active: accent-palette(500),
+  disabled: rgba(#ccc, 0.1),
+);
+$_border: (
+  default: #ebebeb,
+  hover: #ebebeb,
+  active: accent-palette(500),
+  disabled: rgba(#ccc, 0.5),
+);
+$_color: (
+  default: accent-palette(500),
+  hover: accent-palette(500),
+  active: accent-contrast(500),
+  disabled: #bdbdbd,
+);
+$_label-color: (
+  default: inherit,
+  hover: inherit,
+  active: inherit,
+  disabled: #bdbdbd,
+);
+
+$_border-style: solid;
+$_border-width: 2px;
+$_shape: 50%;
+$_animation: $animation;
+$_height: $module-rem * 2;
+$_width: $module-rem * 2;
+
+.ant-radio-wrapper {
+  .ant-radio {
+    &:hover:not(.ant-radio-disabled):not(.ant-radio-checked) {
+      .ant-radio-inner {
+        border-color: map_get($_border, hover);
+
+        &:after {
+          background: map-get($_color, hover);
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+    .ant-radio-inner {
+      border-color: map-get($_border, default);
+      box-shadow: none;
+      height: 20px;
+      width: 20px;
+
+      &:after {
+        background: map-get($_color, default);
+        height: 10px;
+        left: 4px;
+        top: 4px;
+        width: 10px;
+      }
+    }
+    &.ant-radio-checked {
+      .ant-radio-inner {
+        border-color: map-get($_border, active);
+        background-color: map-get($_bg, active);
+
+        &:after {
+          background: #fff;
+          border-color: #fff;
+        }
+      }
+    }
+
+    &.ant-radio-disabled {
+      .ant-radio-inner {
+        background: map_get($_bg, disabled);
+        border-color: map_get($_border, disabled);
+
+        &:after {
+          background: map-get($_color, disabled);
+        }
+      }
+    }
+  }
+}

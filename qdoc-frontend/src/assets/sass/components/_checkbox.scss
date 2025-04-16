@@ -1,0 +1,67 @@
+@import '../variables';
+
+$_size: $module * 2;
+$_shape: 3px;
+
+$_bg: (
+  default: #ebebeb,
+  hover: #ebebeb,
+  active: accent-palette(500),
+  disabled: rgba(#ccc, 0.1)
+);
+$_border: (
+  default: #ebebeb,
+  hover: #ebebeb,
+  active: accent-palette(500),
+  disabled: rgba(#ccc, 0.5)
+);
+$_color: (
+  default: accent-palette(500),
+  hover: accent-palette(500),
+  active: accent-contrast(500),
+  disabled: #bdbdbd
+);
+$_label-color: (
+  default: inherit,
+  hover: inherit,
+  active: inherit,
+  disabled: #bdbdbd
+);
+
+.ant-checkbox-wrapper {
+  line-height: 30px;
+
+  &.ant-checkbox-wrapper-disabled {
+    pointer-events: none;
+  }
+
+  .ant-checkbox .ant-checkbox-inner {
+    height: $_size;
+    width: $_size;
+    border-radius: $_shape !important;
+  }
+
+  .ant-checkbox-inner:after {
+    height: 12px;
+    width: 7px;
+  }
+
+  &:not(.ant-checkbox-wrapper-checked):hover {
+    .ant-checkbox {
+      .ant-checkbox-inner:after {
+        opacity: 1;
+        border-color: map_get($_bg, active);
+        transform: rotate(45deg) scale(1) translate(-50%, -50%);
+        transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+      }
+    }
+  }
+}
+
+.ant-checkbox-indeterminate {
+  .ant-checkbox-inner {
+    &:after {
+      background: map-get($_bg, active);
+    }
+  }
+}

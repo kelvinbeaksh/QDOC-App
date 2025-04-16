@@ -1,0 +1,91 @@
+@import '../variables';
+
+$_bg: (
+  default: #ebebeb,
+  hover: #ebebeb,
+  active: accent-palette(500),
+  disabled: rgba(#ccc, 0.1)
+);
+$_border: (
+  default: #ebebeb,
+  hover: #ebebeb,
+  active: accent-palette(500),
+  disabled: rgba(#ccc, 0.5)
+);
+$_color: (
+  default: main-palette(500),
+  hover: accent-palette(500),
+  active: accent-contrast(500),
+  disabled: #bdbdbd
+);
+$_label-color: (
+  default: inherit,
+  hover: inherit,
+  active: inherit,
+  disabled: #bdbdbd
+);
+
+$_module-rem: $module-rem;
+$_border-style: solid;
+$_border-width: 1px;
+$_fs: 1rem;
+$_shape: 500px;
+$_animation: $animation;
+$_height: $_module-rem * 2;
+$_width: $_module-rem * 4;
+
+.ant-switch {
+  height: $_height;
+  background: map-get($_bg, default);
+  border: $_border-width $_border-style map-get($_border, default);
+  width: $_width;
+  min-width: $_width;
+
+  &:hover {
+    &:not(.ant-switch-checked),
+    &:not(.ant-switch-disabled) {
+      &:after {
+        background: map-get($_bg, active);
+        border-color: map-get($_border, active);
+      }
+    }
+  }
+  &:focus {
+    box-shadow: none;
+  }
+
+  .ant-switch-handle {
+    top: 50%;
+    height: $_height / 1.6;
+    width: $_height / 1.6;
+    transform: translateY(-50%);
+  }
+  &.ant-switch-checked {
+    background: map-get($_bg, active);
+    border-color: map-get($_border, active);
+
+    .ant-switch-handle {
+      left: calc(100% - 12.5px - 2px) !important;
+      right: 2px;
+    }
+
+    &.ant-switch-disabled {
+      background: rgba(#000, 0.08);
+      border-color: rgba(#000, 0.08);
+
+      &:after {
+        background: #8c8c8c;
+      }
+    }
+  }
+}
+
+.field-with-label {
+  .label {
+    margin-left: $module-rem;
+  }
+}
+
+.ant-click-animating-node {
+  border-color: map-get($_border, active) !important;
+}

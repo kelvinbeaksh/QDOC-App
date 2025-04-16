@@ -1,0 +1,100 @@
+@import '../variables';
+
+$_module-rem: $module-rem;
+$_border-width: 1px;
+$_shape: 500px;
+$_fz: 1rem;
+$_lh: $main-lh;
+
+$_padding: calc(#{$_module-rem} / 2 - #{$_border-width})
+  calc(#{$_module-rem} * 2 - #{$_border-width});
+
+$_fz-xs: $_fz * 0.7;
+$_lh-xs: $_module-rem * 1.5 / $_fz-xs;
+$_padding-xs: 0 calc(#{$_module-rem} / 2 - #{$_border-width});
+
+$_fz-sm: $_fz * 0.7;
+$_lh-sm: $_module-rem * 1.5 / $_fz-sm;
+$_padding-sm: calc(#{$_module-rem} / 4 - #{$_border-width})
+  calc(#{$_module-rem} - #{$_border-width});
+
+$_fz-lg: $_fz * 1.2;
+$_lh-lg: $_module-rem * 2 / $_fz-lg;
+$_padding-lg: calc(#{$_module-rem} - #{$_border-width})
+  calc(#{$_module-rem} * 3 - #{$_border-width});
+
+$_types: (
+  default: (
+    bg: $main-color,
+    color: main-contrast(500)
+  ),
+  accent: (
+    bg: accent-palette(500),
+    color: accent-contrast(500)
+  ),
+  success: (
+    bg: $success-color,
+    color: $success-contrast
+  ),
+  info: (
+    bg: $info-color,
+    color: $info-contrast
+  ),
+  warning: (
+    bg: $warning-color,
+    color: $warning-contrast
+  ),
+  error: (
+    bg: $error-color,
+    color: $error-contrast
+  )
+);
+
+.ant-tag {
+  align-items: center;
+  border: 1px solid transparent;
+  background: main-palette(500);
+  border-radius: $_shape;
+  color: main-contrast(500);
+  display: inline-flex;
+  font-size: $_fz;
+  line-height: $_lh;
+  padding: $_padding;
+  vertical-align: top;
+
+  .anticon-close {
+    color: rgba($main-color, 0.5);
+    font-size: 14px;
+
+    &:hover {
+      color: $main-color;
+    }
+  }
+
+  &.xs {
+    font-size: $_fz-xs;
+    padding: $_padding-xs;
+  }
+
+  &.sm {
+    font-size: $_fz-sm;
+    padding: $_padding-sm;
+  }
+
+  &.lg {
+    font-size: $_fz-lg;
+    padding: $_padding-lg;
+  }
+
+  &.br-0 {
+    border-radius: 0;
+  }
+
+  &.br-25 {
+    border-radius: 25px;
+  }
+}
+
+:root html .ant-tag .anticon-close {
+  font-size: 14px;
+}

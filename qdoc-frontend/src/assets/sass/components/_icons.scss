@@ -1,0 +1,54 @@
+@import '../variables';
+
+$_icon-color: accent-palette(500);
+
+.icon-wrap {
+  align-items: center;
+  border-radius: $shape;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: ($module-rem) ($module-rem / 2);
+
+  justify-content: center;
+  height: 95px;
+  width: 120px;
+
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  .selector {
+    margin-top: $module-rem * 2;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100px;
+    overflow: hidden;
+  }
+
+  &.simple {
+    height: 60px;
+    width: 60px;
+
+    &:hover {
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+
+  .anticon {
+    font-size: 26px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover {
+    background: #fff;
+    box-shadow: $shadow;
+
+    .selector {
+      visibility: visible;
+    }
+
+    .anticon {
+      transform: scale(1.6);
+    }
+  }
+}

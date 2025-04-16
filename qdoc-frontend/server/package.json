@@ -1,0 +1,21 @@
+{
+  "name": "qdoc-portal-server",
+  "version": "0.0.1",
+  "description": "express server for hosting the react app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@beam-australia/react-env": "^3.0.8",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/node": "^12.12.7",
+    "typescript": "^3.7.2"
+  }
+}

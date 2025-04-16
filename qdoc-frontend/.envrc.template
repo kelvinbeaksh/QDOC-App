@@ -1,0 +1,9 @@
+export REACT_APP_API_BASE_URL=http://localhost:4567/api/v1
+export REACT_APP_FIREBASE_CONFIG='{"apiKey": "","authDomain": "","projectId": "","storageBucket": "","messagingSenderId": "","appId": "","measurementId": ""}'
+export REACT_APP_FIREBASE_EMULATOR_URL=http://localhost:9099
+export REACT_APP_NODE_ENV=local
+export REACT_APP_VALIDATE_FIREBASE_CONFIG=true
+
+
+// NOTE
+// REACT_APP_FIREBASE_CONFIG => get from qdoc.kdbx, ensure that the object {} is wrapped with SINGLE quotes e.g. '{}'

@@ -1,0 +1,84 @@
+@import '../variables';
+
+$_line-size: 2px;
+$_line-color: main-palette(50);
+
+.ant-timeline-item {
+  &:not(:last-child) {
+    padding-bottom: $module-rem * 5.25;
+  }
+
+  &.ant-timeline-item-right {
+    padding-right: $module-rem * 2;
+    padding-left: $module-rem;
+  }
+
+  &.ant-timeline-item-left {
+    padding-right: $module-rem;
+  }
+
+  .ant-timeline-item-tail {
+    border-color: $_line-color;
+    width: $_line-size;
+  }
+
+  .ant-timeline-item-content {
+    margin-left: $module-rem * 4.5;
+  }
+
+  .ant-timeline-item-head {
+    background: currentColor;
+
+    &-yellow {
+      color: yellow;
+    }
+
+    &-pink {
+      color: pink;
+    }
+
+    &-orange {
+      color: orange;
+    }
+
+    [class^='h'] {
+      margin: 0 !important;
+    }
+  }
+}
+
+.ant-timeline-item:not(:last-child) {
+  padding-bottom: $module-rem * 4.3;
+}
+
+.ant-timeline-item-content {
+  span[class^='h'] {
+    margin: 0 !important;
+  }
+
+  .item-desc {
+    margin-top: $module-rem;
+    @extend .text-base;
+  }
+}
+
+.ant-timeline-item-head.ant-timeline-item-head-custom {
+  padding: $module-rem ($module-rem * 4);
+  background: transparent;
+  top: 12px;
+}
+.ant-timeline.ant-timeline-alternate .ant-timeline-item-left .ant-timeline-item-content,
+.ant-timeline.ant-timeline-alternate .ant-timeline-item-right .ant-timeline-item-content {
+  width: calc(50% - 28px);
+}
+
+.timeline-head {
+  background: transparent;
+  border-radius: 50%;
+  padding: $module-rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  top: 5px;
+}

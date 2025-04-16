@@ -1,0 +1,25 @@
+$sizes: (
+  sm: 26px,
+  md: 36px,
+  lg: 60px,
+  xl: 100px
+);
+
+.avatar-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@each $size in $sizes {
+  .avatar-#{$size} {
+    height: $size;
+    width: $size;
+
+    > img {
+      height: $size;
+      width: $size;
+    }
+  }
+}

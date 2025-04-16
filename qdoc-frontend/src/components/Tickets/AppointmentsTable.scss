@@ -1,0 +1,18 @@
+@import "../../assets/sass/variables";
+
+.appointmentTableRow {
+  background-color: main-palette(50);
+}
+
+.currentAppointmentTableRow {
+  background-color: accent-palette(A700);
+}
+
+.appointment-table {
+  // width: auto;
+}
+
+.icofont-navigation-menu {
+  color: main-palette(100);
+  cursor: pointer;
+}

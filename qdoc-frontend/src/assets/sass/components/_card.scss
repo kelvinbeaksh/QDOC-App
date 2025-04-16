@@ -1,0 +1,106 @@
+@import '../variables';
+
+$_shape: $shape;
+$_shadow: $shadow;
+
+$_title-fs: 2rem;
+$_title-fw: 500;
+
+$_h-padding: $module-rem * 2;
+$_v-padding: $module-rem * 2;
+
+html {
+  .ant-card {
+    border-radius: $_shape;
+    background: transparent;
+    border: none;
+    padding: 0 !important;
+    margin-bottom: $module-rem * 4;
+
+    .ant-card-cover {
+      margin: (-$_v-padding) (-$_h-padding);
+    }
+
+    .ant-card-head {
+      margin: 0;
+      font-size: $main-fs;
+      padding: 0;
+
+      .ant-card-head-title {
+        font-size: $_title-fs;
+        font-weight: $_title-fw;
+        letter-spacing: 0.2px;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    .ant-card-body {
+      padding: ($_v-padding) 0 0;
+      letter-spacing: 0.4px;
+      line-height: $main-lh;
+    }
+
+    .ant-card-cover {
+      border-radius: $_shape $_shape 0 0;
+      overflow: hidden;
+    }
+
+    .ant-card-actions {
+      border-radius: 0 0 $_shape $_shape;
+      overflow: hidden;
+    }
+
+    .ant-card-meta {
+      &:not(:last-child) {
+        margin-bottom: $module-rem / 2;
+      }
+    }
+
+    &.ghost-demo-card {
+      background: #bec8c8;
+
+      .ant-card-head {
+        color: #fff;
+      }
+    }
+
+    &:not(.ant-card-contain-tabs) {
+      .ant-card-head {
+        border: none;
+      }
+    }
+
+    &.no-padding {
+      padding: $_v-padding;
+
+      .ant-card-body {
+        padding: 0;
+      }
+    }
+  }
+  .ant-card.custom-bg-color,
+  .ant-card.with-shadow,
+  .ant-card[class*='bg'] {
+    box-shadow: $_shadow;
+
+    .ant-card-head {
+      padding: $module-rem $_h-padding !important;
+    }
+    .ant-card-body {
+      padding: $_h-padding !important;
+    }
+
+    .ant-card-head {
+      padding-bottom: 0 !important;
+    }
+
+    .ant-card-cover {
+      margin: 0;
+    }
+
+    .ant-card-head-title {
+      padding: 0;
+    }
+  }
+}
